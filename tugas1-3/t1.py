@@ -37,3 +37,14 @@ print("--- anak dari parameters ---")
 param = fungsi.children[2]
 for c in param.children:
     print(c.type, "|", "bernama" if c.is_named else "anonim")
+    
+print("--- kode rusak ---")
+rusak = b"def sapa(nama\n    return nama\n"
+tree_rusak = parser.parse(rusak)
+print(tree_rusak.root_node)
+print("ada error?", tree_rusak.root_node.has_error)
+print("kode1 ada error?", tree.root_node.has_error)
+
+err = tree_rusak.root_node.children[0]
+for c in err.children:
+    print(c.type, "|", c.text.decode())
