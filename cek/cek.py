@@ -9,6 +9,15 @@ parser = Parser(PY)
 Q_TODO = Query(PY, '((comment) @c (#match? @c "TODO|FIXME"))')
 Q_FUNGSI = Query(PY, "(function_definition name: (identifier) @nama) @fungsi")
 
+def cari_error(node):
+    if node.is_error or node.is_missing:
+        return node
+    for child in node.children:
+        hasil = cari_error(child)
+        if hasil is not None:
+            return hasil
+    return None
+
 def cek_file(path):
     tree = parser.parse(path.read_bytes())
 
@@ -23,7 +32,10 @@ def cek_file(path):
         if jumlah > 30:
             nama = cap["nama"][0].text.decode()
             print(f"{path}:{fungsi.start_point[0] + 1}: fungsi {nama} terlalu panjang ({jumlah} baris)")
-    # Fitur 3 (TODO): file yang pohonnya mengandung error
+        # Fitur 3: file yang pohonnya mengandung error
+    if tree.root_node.has_error:
+        err = cari_error(tree.root_node)
+        print(f"{path}:{err.start_point[0] + 1}: sintaks error")
 
 for path in Path(sys.argv[1]).rglob("*.py"):
     cek_file(path)
