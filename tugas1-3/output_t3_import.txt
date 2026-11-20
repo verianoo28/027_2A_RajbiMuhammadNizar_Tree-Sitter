@@ -1,0 +1,5 @@
+﻿@modul  baris 1: os
+@modul  baris 3: json
+@modul  baris 4: os.path
+@modul  baris 5: tree_sitter
+@modul  baris 2: pathlib

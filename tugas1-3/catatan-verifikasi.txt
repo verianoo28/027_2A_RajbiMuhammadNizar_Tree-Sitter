@@ -1,0 +1,17 @@
+Tugas 1
+- Fungsi, if/else, dan class berhasil diparse dan disimpan di output_t1.txt.
+- Node bernama: module, function_definition, identifier, parameters, block.
+- Node anonim: def, :, (, dan ).
+- Contoh kode rusak menghasilkan root_node.has_error = True dan node ERROR.
+
+Tugas 2
+- jelajah.py menelusuri named_children dan mencetak kedalaman, tipe, baris/kolom, serta field.
+- Berkas contoh_layanan.py berisi 117 baris dan dipakai sebagai uji berukuran lebih dari 100 baris.
+- Output lengkap tersimpan di output_t2.txt.
+
+Tugas 3
+- Nama fungsi lihat dan jumlah parameternya cocok: 1 parameter.
+- Pemanggilan print pada contoh_layanan.py ditemukan pada baris 113.
+- Import yang ditemukan: os, pathlib, json, os.path, tree_sitter.
+- Hasil manual dan query disimpan dalam output_t3_fungsi.txt,
+  output_t3_print.txt, dan output_t3_import.txt.

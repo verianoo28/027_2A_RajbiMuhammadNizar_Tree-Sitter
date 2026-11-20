@@ -1,0 +1,40 @@
+﻿def sapa(nama):
+    return nama
+
+(module (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (return_statement (identifier)))))
+
+if x > 1:
+    y = 2
+else:
+    y = 3
+
+(module (if_statement condition: (comparison_operator (identifier) (integer)) consequence: (block (expression_statement (assignment left: (identifier) right: (integer)))) alternative: (else_clause body: (block (expression_statement (assignment left: (identifier) right: (integer)))))))
+
+class Kucing:
+    def suara(self):
+        return 1
+
+(module (class_definition name: (identifier) body: (block (function_definition name: (identifier) parameters: (parameters (identifier)) body: (block (return_statement (integer)))))))
+
+--- anak langsung function_definition ---
+def | anonim
+identifier | bernama
+parameters | bernama
+: | anonim
+block | bernama
+--- jumlah ---
+5 3
+--- anak dari parameters ---
+( | anonim
+identifier | bernama
+) | anonim
+--- kode rusak ---
+(module (ERROR (identifier) (identifier) (identifier) (identifier)))
+ada error? True
+kode1 ada error? False
+def | def
+identifier | sapa
+( | (
+identifier | nama
+identifier | return
+identifier | nama
