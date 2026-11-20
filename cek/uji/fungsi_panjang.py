@@ -1,0 +1,1 @@
+python -c "open('cek/uji/fungsi_panjang.py','w').write('def panjang():\n' + ''.join(f'    x{i} = {i}\n' for i in range(35)))"
