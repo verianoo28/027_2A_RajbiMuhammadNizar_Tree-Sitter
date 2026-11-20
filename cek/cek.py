@@ -37,5 +37,9 @@ def cek_file(path):
         err = cari_error(tree.root_node)
         print(f"{path}:{err.start_point[0] + 1}: sintaks error")
 
+SKIP = {".git", "venv", ".venv", "node_modules", "__pycache__"}
+
 for path in Path(sys.argv[1]).rglob("*.py"):
+    if SKIP & set(path.parts):
+        continue
     cek_file(path)
