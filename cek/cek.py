@@ -7,6 +7,7 @@ PY = Language(tspython.language())
 parser = Parser(PY)
 
 Q_TODO = Query(PY, '((comment) @c (#match? @c "TODO|FIXME"))')
+Q_FUNGSI = Query(PY, "(function_definition name: (identifier) @nama) @fungsi")
 
 def cek_file(path):
     tree = parser.parse(path.read_bytes())
@@ -15,7 +16,13 @@ def cek_file(path):
     for node in QueryCursor(Q_TODO).captures(tree.root_node).get("c", []):
         print(f"{path}:{node.start_point[0] + 1}: {node.text.decode().strip()}")
 
-    # Fitur 2 (TODO): fungsi yang lebih dari 30 baris
+        # Fitur 2: fungsi yang lebih dari 30 baris
+    for _, cap in QueryCursor(Q_FUNGSI).matches(tree.root_node):
+        fungsi = cap["fungsi"][0]
+        jumlah = cap["fungsi"][0].end_point[0] - cap["fungsi"][0].start_point[0] + 1
+        if jumlah > 30:
+            nama = cap["nama"][0].text.decode()
+            print(f"{path}:{fungsi.start_point[0] + 1}: fungsi {nama} terlalu panjang ({jumlah} baris)")
     # Fitur 3 (TODO): file yang pohonnya mengandung error
 
 for path in Path(sys.argv[1]).rglob("*.py"):
